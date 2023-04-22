@@ -7,7 +7,7 @@ class Player():
         self.name = name
         self.valid_choices = ["rock", "paper", "scissors"]
 
-    def store_move(self) -> None:
+    def get_move(self) -> None:
         while True:
             self.choice = input(f"{self.name}, please choose your next choice: ").lower()
             if self.choice not in self.valid_choices:
@@ -24,7 +24,7 @@ class Computer(Player):
     def __init__(self) -> None:
         super().__init__("Computer")
 
-    def store_move(self) -> None:
+    def get_move(self) -> None:
         self.choice = random.choice(self.valid_choices)
         print(self.choice)
 
@@ -54,4 +54,12 @@ class GameManager():
             print(f"{self.computer.name} wins the game! Congrats!")
             self.is_game_over = True
 
+    def start_game(self) -> None:
+        print("Prepare yourself! The game against the computer has started!")
+        while self.is_game_over is False:
+            self.player.get_move()
+            self.computer.get_move()
+            self.decide_the_winner()
+            print(f" Your score:{self.player.score} ||| Computer's score:{self.computer.score}")
+            self.check_the_score()
 
