@@ -9,7 +9,7 @@ class Player():
 
     def store_move(self) -> None:
         while True:
-            self.choice = input(f"{self.name}, please choose your next move: ")
+            self.choice = input(f"{self.name}, please choose your next choice: ")
             if self.choice.lower() not in self.valid_choices:
                 print("You can only choose from Rock, Paper or Scissors")
                 continue
@@ -33,6 +33,18 @@ class GameManager():
         self.player = player
         self.computer = computer
         self.is_game_over = False
+
+    def decide_the_winner(self):
+        if self.player.choice == self.computer.choice:
+            print("It's a tie")
+        elif (self.player.choice == "rock" and self.computer_player.choice == "scissors") or \
+             (self.player.choice == "paper" and self.computer_player.choice == "rock") or \
+             (self.player.choice == "scissors" and self.computer_player.choice == "paper"):
+            self.player.increase_score()
+            print(f"{self.player.name} won the round!")
+        else:
+            self.computer.increase_score()
+            print(f"{self.computer.name} won the round!")
 
     
 
