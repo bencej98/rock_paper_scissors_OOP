@@ -21,16 +21,24 @@ class Player():
         self.score += 1
 
 class Computer(Player):
-    def __init__(self, name) -> None:
-        super().__init__(name)
-        self.name = "Computer"
+    def __init__(self) -> None:
+        super().__init__("Computer")
 
     def store_move(self) -> None:
         self.choice = random.choice(self.valid_choices)
-        
+        print(self.choice)
 
+class GameManager():
+    def __init__(self, player, computer, ) -> None:
+        self.player = player
+        self.computer = computer
+        self.is_game_over = False
 
+    
 
-
-test = Player("Bence")
-test.store_player_move()
+    
+player_name = input("Choose your name: ")
+test = Player(player_name)
+test.store_move()
+computer = Computer()
+computer.store_move()
