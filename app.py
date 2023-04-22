@@ -14,7 +14,6 @@ class Player():
                 print("You can only choose from Rock, Paper or Scissors")
                 continue
             else:
-                print(self.choice)
                 break
             
     def increase_score(self) -> None:
@@ -37,9 +36,9 @@ class GameManager():
     def decide_the_winner(self) -> None:
         if self.player.choice == self.computer.choice:
             print("It's a tie")
-        elif (self.player.choice == "rock" and self.computer_player.choice == "scissors") or \
-             (self.player.choice == "paper" and self.computer_player.choice == "rock") or \
-             (self.player.choice == "scissors" and self.computer_player.choice == "paper"):
+        elif (self.player.choice == "rock" and self.computer.choice == "scissors") or \
+             (self.player.choice == "paper" and self.computer.choice == "rock") or \
+             (self.player.choice == "scissors" and self.computer.choice == "paper"):
             self.player.increase_score()
             print(f"{self.player.name} won the round!")
         else:
@@ -47,11 +46,11 @@ class GameManager():
             print(f"{self.computer.name} won the round!")
 
     def check_the_score(self) -> None:
-        if self.player.score == 5:
+        if self.player.score == 3:
             print(f"{self.player.name} wins the game! Congrats!")
             self.is_game_over = True
-        elif self.computer.score == 5:
-            print(f"{self.computer.name} wins the game! Congrats!")
+        elif self.computer.score == 3:
+            print(f"{self.computer.name} wins the game!")
             self.is_game_over = True
 
     def start_game(self) -> None:
@@ -62,4 +61,12 @@ class GameManager():
             self.decide_the_winner()
             print(f" Your score:{self.player.score} ||| Computer's score:{self.computer.score}")
             self.check_the_score()
+
+player_name = input("Type your name here: ")
+player = Player(player_name)
+computer = Computer()
+current_game = GameManager(player, computer)
+
+if __name__ == "__main__":
+    current_game.start_game()
 
