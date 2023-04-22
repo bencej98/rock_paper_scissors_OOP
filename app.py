@@ -14,6 +14,8 @@ class Player():
             else:
                 print(player_move)
                 break
+    def increase_score(self):
+        self.score += 1
 
 
 test = Player("Bence")
