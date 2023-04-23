@@ -1,6 +1,7 @@
 import random
 
-class Player():
+
+class Player:
     def __init__(self, name) -> None:
         self.choice = None
         self.score = 0
@@ -10,15 +11,18 @@ class Player():
     def get_move(self) -> None:
         """Gets the current move of the player"""
         while True:
-            self.choice = input(f"{self.name}, please choose your next choice: ").lower()
+            self.choice = input(
+                f"{self.name}, please choose your next choice: "
+            ).lower()
             if self.choice not in self.valid_choices:
                 print("You can only choose from Rock, Paper or Scissors")
                 continue
             else:
                 break
-            
+
     def increase_score(self) -> None:
         self.score += 1
+
 
 class Computer(Player):
     def __init__(self) -> None:
@@ -26,9 +30,14 @@ class Computer(Player):
 
     def get_move(self) -> None:
         self.choice = random.choice(self.valid_choices)
-        
-class GameManager():
-    def __init__(self, player, computer, ) -> None:
+
+
+class GameManager:
+    def __init__(
+        self,
+        player,
+        computer,
+    ) -> None:
         self.player = player
         self.computer = computer
         self.is_game_over = False
@@ -37,9 +46,11 @@ class GameManager():
         """Based on the player's and computer's choice decides the winner of the current round"""
         if self.player.choice == self.computer.choice:
             print("It's a tie")
-        elif (self.player.choice == "rock" and self.computer.choice == "scissors") or \
-             (self.player.choice == "paper" and self.computer.choice == "rock") or \
-             (self.player.choice == "scissors" and self.computer.choice == "paper"):
+        elif (
+            (self.player.choice == "rock" and self.computer.choice == "scissors")
+            or (self.player.choice == "paper" and self.computer.choice == "rock")
+            or (self.player.choice == "scissors" and self.computer.choice == "paper")
+        ):
             self.player.increase_score()
             print(f"{self.player.name} won the round!")
         else:
@@ -62,8 +73,11 @@ class GameManager():
             self.player.get_move()
             self.computer.get_move()
             self.decide_the_winner()
-            print(f" Your score:{self.player.score} ||| Computer's score:{self.computer.score}")
+            print(
+                f" Your score:{self.player.score} ||| Computer's score:{self.computer.score}"
+            )
             self.check_the_score()
+
 
 player_name = input("Type your name here: ")
 player = Player(player_name)
@@ -72,4 +86,3 @@ current_game = GameManager(player, computer)
 
 if __name__ == "__main__":
     current_game.start_game()
-
