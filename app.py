@@ -75,6 +75,20 @@ class GameManager:
             self.decide_the_winner()
             print(f" Your score:{self.player.score} ||| Computer's score:{self.computer.score}")
             self.check_the_score()
+        self.restart_game()
+        
+
+    def restart_game(self):
+        while True:
+            play_again = input("Do you want to play again? Type Y for yes or N for no: ").lower()
+            if play_again == "y":
+                    self.player.score = 0
+                    self.computer.score = 0
+                    self.is_game_over = False
+                    print("The new game has started")
+                    self.start_game()
+            else:
+                break
 
 
 player_name = input("Type your name here: ")
