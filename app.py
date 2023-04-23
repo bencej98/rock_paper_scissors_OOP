@@ -73,9 +73,7 @@ class GameManager:
             self.player.get_move()
             self.computer.get_move()
             self.decide_the_winner()
-            print(
-                f" Your score:{self.player.score} ||| Computer's score:{self.computer.score}"
-            )
+            print(f" Your score:{self.player.score} ||| Computer's score:{self.computer.score}")
             self.check_the_score()
 
 
