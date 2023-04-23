@@ -26,8 +26,7 @@ class Computer(Player):
 
     def get_move(self) -> None:
         self.choice = random.choice(self.valid_choices)
-        print(self.choice)
-
+        
 class GameManager():
     def __init__(self, player, computer, ) -> None:
         self.player = player
