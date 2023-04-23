@@ -20,3 +20,10 @@ class TestRockPaperScissors(unittest.TestCase):
         with patch('builtins.input', side_effect=['rock']):
             self.player.get_move()
             self.assertEqual(self.player.choice, 'rock')
+    
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_decide_the_winner(self, mock_stdout):
+        self.player.choice = 'rock'
+        self.computer_player.choice = 'scissors'
+        self.current_game.decide_the_winner()
+        self.assertEqual(mock_stdout.getvalue(), f'{self.player.name} won the round!\n')
